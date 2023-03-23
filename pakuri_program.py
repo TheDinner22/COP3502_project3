@@ -105,7 +105,8 @@ def main():
 
         # Sort Pakuri
         elif user_choice == 5:
-            pass
+            dex.sort_pakuri()
+            print("Pakuri have been sorted!")
 
         # Exit
         elif user_choice == 6:
