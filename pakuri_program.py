@@ -76,7 +76,19 @@ def main():
 
         # Add Pakuri
         elif user_choice == 3:
-            pass
+            # prompt user for input
+            species = input("Enter the name of the species to add: ")
+
+            # check for failure conditions
+            if len(dex.critters_list) == dex.capacity:
+                print("Error: Pakudex is full!")
+
+            if species in map(lambda critter: critter.species, dex.critters_list):
+                print("Error: Pakudex already contains this species!")
+
+            # add the pakuri
+            dex.add_pakuri(species)
+            print(f"Pakuri species {species} successfully added!")
 
         # Evolve Pakuri
         elif user_choice == 4:
