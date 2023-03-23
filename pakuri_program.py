@@ -1,9 +1,15 @@
+# <space>fw map(lambda ...)
+# it does not return a list and i assumed that it did so whenever you call an index
+# method that will error
+# lsp errors should find that for you so just fix it there and should be good
+
 from pakudex import Pakudex
 
 def error(msg):
     raise Exception(msg)
 
 def print_menu():
+    print("")
     print("Pakudex Main Menu")
     print("-----------------")
     print("1. List Pakuri")
@@ -12,17 +18,19 @@ def print_menu():
     print("4. Evolve Pakuri")
     print("5. Sort Pakuri")
     print("6. Exit")
+    print("")
 
 def get_capacity():
-    try:
-        user_input = input("Enter max capacity of the Pakudex: ")
-        return int(user_input)
-    except Exception:
-        error("capacity of the Pakudex must be an int")
+    while True:
+        try:
+            user_input = input("Enter max capacity of the Pakudex: ")
+            return int(user_input)
+        except Exception:
+            print("Please enter a valid size.")
 
 def menu_input():
     try:
-        user_input = int(input("What would you like to do?"))
+        user_input = int(input("What would you like to do? "))
 
         if user_input < 1 or user_input > 6:
             error("this error will exit the try block")
@@ -62,7 +70,7 @@ def main():
 
             if user_input in map(lambda critter: critter.species, dex.critters_list):
                 # get the critter
-                names_list = map(lambda critter: critter.species, dex.critters_list)
+                names_list = list(map(lambda critter: critter.species, dex.critters_list))
                 critter_index = names_list.index(user_input)
                 critter = dex.critters_list[critter_index]
 
