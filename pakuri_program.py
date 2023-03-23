@@ -47,6 +47,7 @@ def main():
 
         # List Pakuri
         if user_choice == 1:
+            # check to see if list is empty
             if len(dex.critters_list) == 0:
                 print("No Pakuri in Pakudex yet!")
             else:
@@ -56,7 +57,22 @@ def main():
 
         # Show Pakuri
         elif user_choice == 2:
-            pass
+            # prompt for species
+            user_input = input("Enter the name of the species to display: ")
+
+            if user_input in map(lambda critter: critter.species, dex.critters_list):
+                # get the critter
+                names_list = map(lambda critter: critter.species, dex.critters_list)
+                critter_index = names_list.index(user_input)
+                critter = dex.critters_list[critter_index]
+
+                # print the deets!
+                print(f"Species: {critter.species}")
+                print(f"Attack: {critter.attack}")
+                print(f"Defense: {critter.defense}")
+                print(f"Speed: {critter.speed}")
+            else:
+                print("Error: No such Pakuri!")
 
         # Add Pakuri
         elif user_choice == 3:
