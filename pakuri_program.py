@@ -1,3 +1,5 @@
+from pakudex import Pakudex
+
 def error(msg):
     raise Exception(msg)
 
@@ -35,6 +37,9 @@ def main():
     capacity = get_capacity()
     print(f"The Pakudex can hold {str(capacity)} species of Pakuri.")
 
+    # create the pakudex
+    dex = Pakudex(capacity)
+
     while True:
         print_menu()
 
@@ -42,7 +47,12 @@ def main():
 
         # List Pakuri
         if user_choice == 1:
-            pass
+            if len(dex.critters_list) == 0:
+                print("No Pakuri in Pakudex yet!")
+            else:
+                for i in range(len(dex.critters_list)):
+                    name = dex.critters_list[i].species
+                    print(f"{str(i + 1)}. {name}")
 
         # Show Pakuri
         elif user_choice == 2:
