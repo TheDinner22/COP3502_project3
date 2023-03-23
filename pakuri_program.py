@@ -92,7 +92,16 @@ def main():
 
         # Evolve Pakuri
         elif user_choice == 4:
-            pass
+            # prompt user for input
+            species = input("Enter the name of the species to evolve: ")
+
+            # check for failure conditions
+            if not ( species in map(lambda critter: critter.species, dex.critters_list) ):
+                print("Error: No such Pakuri!")
+
+            # evolve it and print the message
+            dex.evolve_species(species)
+            print(f"{species} has evolved!")
 
         # Sort Pakuri
         elif user_choice == 5:
