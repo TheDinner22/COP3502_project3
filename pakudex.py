@@ -26,7 +26,7 @@ class Pakudex:
     # the implementation of this function assumes that there are no dupelicate items in
     # self.critters_list
     def get_stats(self, species):
-        names_list = map(lambda critter: critter.species, self.critters_list)
+        names_list = list( map(lambda critter: critter.species, self.critters_list) )
 
         try:
             critter_index = names_list.index(species)
@@ -64,7 +64,7 @@ class Pakudex:
             return False
 
         # evolve and return true
-        names_list = map(lambda critter: critter.species, self.critters_list)
+        names_list = list( map(lambda critter: critter.species, self.critters_list) )
         critter_index = names_list.index(species)
         critter = self.critters_list[critter_index]
         critter.evolve() # does this work????
