@@ -28,17 +28,6 @@ def get_capacity():
         except Exception:
             print("Please enter a valid size.")
 
-def menu_input():
-    try:
-        user_input = int(input("What would you like to do? "))
-
-        if user_input < 1 or user_input > 6:
-            error("this error will exit the try block")
-
-        return user_input
-    except Exception:
-        error("menu choices must be of type: int AND must be between 1-6 inclusive")
-
 def main():
     # welcome message and get capacity
     print("Welcome to Pakudex: Tracker Extraordinaire!")
@@ -51,10 +40,10 @@ def main():
     while True:
         print_menu()
 
-        user_choice = menu_input()
+        user_choice = input("What would you like to do? ")
 
         # List Pakuri
-        if user_choice == 1:
+        if user_choice == "1":
             # check to see if list is empty
             if len(dex.critters_list) == 0:
                 print("No Pakuri in Pakudex yet!")
@@ -64,7 +53,7 @@ def main():
                     print(f"{str(i + 1)}. {name}")
 
         # Show Pakuri
-        elif user_choice == 2:
+        elif user_choice == "2":
             # prompt for species
             user_input = input("Enter the name of the species to display: ")
 
@@ -84,7 +73,7 @@ def main():
                 print("Error: No such Pakuri!")
 
         # Add Pakuri
-        elif user_choice == 3:
+        elif user_choice == "3":
             # check for failure conditions
             if len(dex.critters_list) == dex.capacity:
                 print("Error: Pakudex is full!")
@@ -103,7 +92,7 @@ def main():
             print(f"Pakuri species {species} successfully added!")
 
         # Evolve Pakuri
-        elif user_choice == 4:
+        elif user_choice == "4":
             # prompt user for input
             species = input("Enter the name of the species to evolve: ")
 
@@ -117,17 +106,17 @@ def main():
             print(f"{species} has evolved!")
 
         # Sort Pakuri
-        elif user_choice == 5:
+        elif user_choice == "5":
             dex.sort_pakuri()
             print("Pakuri have been sorted!")
 
         # Exit
-        elif user_choice == 6:
+        elif user_choice == "6":
             print("Thanks for using Pakudex! Bye!")
             return
 
         else:
-            error("unreachable")
+            print("Unrecognized menu selection!")
 
 if __name__ == "__main__":
     main()
