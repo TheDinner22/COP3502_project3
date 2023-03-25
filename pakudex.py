@@ -18,7 +18,7 @@ class Pakudex:
     # Returns a string list containing the species of the critters as ordered in the pakudex; if there are no species
     # added yet, this method should return # None
     def get_species_array(self):
-        return None if len(self.critters_list) == 0 else map(lambda pakuri: pakuri.species, self.critters_list)
+        return None if len(self.critters_list) == 0 else list(map(lambda pakuri: pakuri.species, self.critters_list))
 
     # Returns an int list containing the attack, defense, and speed statistics of species at indices 0, 1, and 2
     # respectively; if species is not in the pakudex, returns # None
