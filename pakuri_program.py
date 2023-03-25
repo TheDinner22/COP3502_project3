@@ -75,6 +75,7 @@ def main():
                 critter = dex.critters_list[critter_index]
 
                 # print the deets!
+                print("")
                 print(f"Species: {critter.species}")
                 print(f"Attack: {critter.attack}")
                 print(f"Defense: {critter.defense}")
@@ -84,15 +85,18 @@ def main():
 
         # Add Pakuri
         elif user_choice == 3:
+            # check for failure conditions
+            if len(dex.critters_list) == dex.capacity:
+                print("Error: Pakudex is full!")
+                continue
+
             # prompt user for input
             species = input("Enter the name of the species to add: ")
 
             # check for failure conditions
-            if len(dex.critters_list) == dex.capacity:
-                print("Error: Pakudex is full!")
-
             if species in map(lambda critter: critter.species, dex.critters_list):
                 print("Error: Pakudex already contains this species!")
+                continue
 
             # add the pakuri
             dex.add_pakuri(species)
@@ -106,6 +110,7 @@ def main():
             # check for failure conditions
             if not ( species in map(lambda critter: critter.species, dex.critters_list) ):
                 print("Error: No such Pakuri!")
+                continue
 
             # evolve it and print the message
             dex.evolve_species(species)
