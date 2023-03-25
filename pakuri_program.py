@@ -23,8 +23,13 @@ def print_menu():
 def get_capacity():
     while True:
         try:
-            user_input = input("Enter max capacity of the Pakudex: ")
-            return int(user_input)
+            user_input = int(input("Enter max capacity of the Pakudex: "))
+
+            # if its negative error out of the try block
+            if user_input < 0:
+                assert 1 == 2, "I could have used another print statement and continue but this works too"
+    
+            return user_input
         except Exception:
             print("Please enter a valid size.")
 
@@ -48,6 +53,7 @@ def main():
             if len(dex.critters_list) == 0:
                 print("No Pakuri in Pakudex yet!")
             else:
+                print("Pakuri In Pakudex:")
                 for i in range(len(dex.critters_list)):
                     name = dex.critters_list[i].species
                     print(f"{str(i + 1)}. {name}")
